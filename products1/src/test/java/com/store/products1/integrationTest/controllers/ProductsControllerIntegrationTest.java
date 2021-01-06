@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ProductsControllerIntegrationTest {
 
-    private static final String PRODUCTS_URI = "/private/store/products/";
+    private static final String PRODUCTS_URI = "/private/store/products";
 
     @Autowired
     private MockMvc mvc;
@@ -48,7 +48,7 @@ public class ProductsControllerIntegrationTest {
     public void returnListProductsWhenEndPointIsCalledAndFilterIsNumeric() throws Exception {
 
         String filter ="1";
-        String responseExpected = readFile("products/oneProductsPalindrome.json");
+        String responseExpected = readFile("products/oneProductsPalindromeIntgr.json");
 
         this.mvc.perform(get(PRODUCTS_URI)
                 .param("filter", filter)

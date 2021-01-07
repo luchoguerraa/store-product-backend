@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(MockitoJUnitRunner.class)
 public class ProductsControllerTest {
 
-    private static final String PRODUCTS_URI = "/private/store/products";
+    private static final String PRODUCTS_URI = "/api/v1/private/store/products";
 
     @Mock
     private UseCaseProducts useCaseProducts;

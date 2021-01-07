@@ -38,6 +38,13 @@ public class UseCaseProducts {
         return products;
     }
 
+    public List<Product> products() {
+
+        List<ProductEntity> productsEntity = productListRepository.productsEntity();
+        List<Product> products = productsMapper.convert(productsEntity);
+        return products;
+    }
+
     private List<ProductEntity> filterProductsEntity(List<ProductEntity> productsEntity, String filter) {
 
         List<ProductEntity> productsEntityFilter;

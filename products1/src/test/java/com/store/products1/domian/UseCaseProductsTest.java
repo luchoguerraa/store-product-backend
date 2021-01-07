@@ -76,4 +76,13 @@ public class UseCaseProductsTest {
 
     }
 
+    @Test
+    public void returnFullListProductWhenCallProductMethodWithParameter() {
+
+        List<Product> response = useCaseProducts.products();
+        Assert.assertNotNull(response);
+        Assert.assertEquals(6l, response.size());
+
+    }
+
 }

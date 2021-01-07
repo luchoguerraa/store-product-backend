@@ -24,7 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ProductsControllerIntegrationTest {
 
-    private static final String PRODUCTS_URI = "/private/store/products";
+    private static final String PRODUCTS_URI = "/api/v1/private/store/products";
+    private static final String PRODUCTS_URI_FULL = "/api/v1/private/store/products/";
 
     @Autowired
     private MockMvc mvc;
@@ -52,6 +53,18 @@ public class ProductsControllerIntegrationTest {
 
         this.mvc.perform(get(PRODUCTS_URI)
                 .param("filter", filter)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(responseExpected, true));
+    }
+
+    @Test
+    public void returnFullListProduct() throws Exception {
+
+        String responseExpected = readFile("products/successProducts.json");
+
+        this.mvc.perform(get(PRODUCTS_URI_FULL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

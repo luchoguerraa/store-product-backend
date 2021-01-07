@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "private/store/products", produces = "application/json")
+@RequestMapping(path = "/api/v1/private/store/products", produces = "application/json")
 public class ProductsController {
 
     private final UseCaseProducts useCaseProducts;
@@ -22,6 +22,14 @@ public class ProductsController {
     public ResponseEntity<List<Product>> products(@RequestParam final String filter) {
 
         List<Product> products = useCaseProducts.products(filter);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Product>> products() {
+
+        List<Product> products = useCaseProducts.products();
         return new ResponseEntity<>(products, HttpStatus.OK);
 
     }
